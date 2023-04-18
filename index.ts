@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, Events, Partials, ComponentType, TextInputStyle, ChannelType } from 'discord.js'
+import { Client, GatewayIntentBits, Events, Partials, ComponentType, TextInputStyle, ChannelType, MessageFlags } from 'discord.js'
 import { token } from './config.json'
 
 const client = new Client({
@@ -57,7 +57,8 @@ client.on(Events.InteractionCreate, async interaction => {
 
 		await feedbackChannel.send({
 			content: `>>> ${input.value}`,
-			allowedMentions: { parse: [] }
+			allowedMentions: { parse: [] },
+			flags: MessageFlags.SuppressEmbeds
 		})
 
 		await interaction.reply({
